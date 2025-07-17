@@ -1,0 +1,17 @@
+
+{% extends "layout.html" %}
+{% block title %}Compliance Detail{% endblock %}
+{% block content %}
+<h2>Compliance Check Details</h2>
+<table class="table table-bordered">
+    <tr><th>ID</th><td>{{ check.compliance_id }}</td></tr>
+    <tr><th>Company</th><td>{{ check.company }}</td></tr>
+    <tr><th>Regulation</th><td>{{ check.regulation }}</td></tr>
+    <tr><th>Status</th><td>{{ check.status }}</td></tr>
+    <tr><th>Findings</th><td>{{ check.findings }}</td></tr>
+    <tr><th>Recommendations</th><td>{{ check.recommendations }}</td></tr>
+    <tr><th>Checked By</th><td>{{ check.checked_by }}</td></tr>
+    <tr><th>Next Review Date</th><td>{{ check.next_review_date }}</td></tr>
+</table>
+<a href="{{ url_for('compliance.list_compliance') }}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

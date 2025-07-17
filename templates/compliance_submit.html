@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Compliance Check</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Submit Compliance Check</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.company.label(class="form-label") }}
+            {{ form.company(class="form-control") }}
+            {% for error in form.company.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.regulation.label(class="form-label") }}
+            {{ form.regulation(class="form-control") }}
+            {% for error in form.regulation.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.status.label(class="form-label") }}
+            {{ form.status(class="form-select") }}
+            {% for error in form.status.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.findings.label(class="form-label") }}
+            {{ form.findings(class="form-control", rows=3) }}
+            {% for error in form.findings.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.recommendations.label(class="form-label") }}
+            {{ form.recommendations(class="form-control", rows=3) }}
+            {% for error in form.recommendations.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.checked_by.label(class="form-label") }}
+            {{ form.checked_by(class="form-control") }}
+            {% for error in form.checked_by.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.next_review_date.label(class="form-label") }}
+            {{ form.next_review_date(class="form-control") }}
+            {% for error in form.next_review_date.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

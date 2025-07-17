@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Tax Return</title>
+    https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Submit New Tax Return</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="company" class="form-label">Company Name</label>
+            <input type="text" class="form-control" id="company" name="company" required>
+        </div>
+        <div class="mb-3">
+            <label for="tax_period" class="form-label">Tax Period</label>
+            <input type="text" class="form-control" id="tax_period" name="tax_period" placeholder="e.g., 2025-Q1" required>
+        </div>
+        <div class="mb-3">
+            <label for="revenue_usd" class="form-label">Revenue (USD)</label>
+            <input type="number" step="0.01" class="form-control" id="revenue_usd" name="revenue_usd" required>
+        </div>
+        <div class="mb-3">
+            <label for="revenue_lrd" class="form-label">Revenue (LRD)</label>
+            <input type="number" step="0.01" class="form-control" id="revenue_lrd" name="revenue_lrd" required>
+        </div>
+        <div class="mb-3">
+            <label for="tax_due_usd" class="form-label">Tax Due (USD)</label>
+            <input type="number" step="0.01" class="form-control" id="tax_due_usd" name="tax_due_usd" required>
+        </div>
+        <div class="mb-3">
+            <label for="tax_due_lrd" class="form-label">Tax Due (LRD)</label>
+            <input type="number" step="0.01" class="form-control" id="tax_due_lrd" name="tax_due_lrd" required>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Return</button>
+        <a href="{{ url_for('tax_audit.list_tax_returns') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

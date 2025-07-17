@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Pricing Analysis Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Transfer Pricing Analysis Details</h2>
+    <table class="table table-bordered">
+        <tr><th>Analysis ID</th><td>{{ analysis.analysis_id }}</td></tr>
+        <tr><th>Company</th><td>{{ analysis.company }}</td></tr>
+        <tr><th>Transaction Type</th><td>{{ analysis.transaction_type }}</td></tr>
+        <tr><th>Related Party</th><td>{{ analysis.related_party }}</td></tr>
+        <tr><th>Transaction Value (USD)</th><td>${{ analysis.transaction_value_usd }}</td></tr>
+        <tr><th>Arm's Length Price (USD)</th><td>${{ analysis.arm_length_price_usd }}</td></tr>
+        <tr><th>Adjustment Required</th><td>{{ 'Yes' if analysis.adjustment_required else 'No' }}</td></tr>
+        <tr><th>Analysis Method</th><td>{{ analysis.analysis_method }}</td></tr>
+    </table>
+    <a href="{{ url_for('transfer_pricing.list_tp_analyses') }}" class="btn btn-primary">Back to List</a>
+</div>
+</body>
+</html>
