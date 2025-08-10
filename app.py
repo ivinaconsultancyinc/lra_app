@@ -161,19 +161,7 @@ from roles import Role, role_required
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        user = User.query.filter_by(email=email).first()
-        if user and check_password_hash(user.password, password):
-            login_user(user)
-            flash('Logged in successfully.', 'success')
-            return redirect(url_for('admin_dashboard'))
-        else:
-            flash('Invalid credentials.', 'danger')
-    return render_template('login.html')
+@auth.route('/login', methods=['_template('login.html')
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -218,7 +206,9 @@ def submit_compliance():
 
 @auth.route('/logout')
 @login_required
-defYou have been logged out.', 'info')
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
     return redirect(url_for('auth.login'))
 
 
