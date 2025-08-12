@@ -161,20 +161,7 @@ from roles import Role, role_required
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        user = User.query.filter_by(email=email).first()
-        if user and check_password_hash(user.password, password):
-            login_user(user)
-            flash('Logged in successfully.', 'success')
-            return redirect(url_for('admin_dashboard'))
-        else:
-            flash('Invalid email or password.', 'danger')
-    return render_template('login.html')
-
+@auth.route('/login', methods=['_template('login.html')
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -187,9 +174,9 @@ def register():
             flash('Username already exists.', 'warning')
         else:
             new_user = User(
-                user                email=email,
+                email=email,
                 role=role,
-                password_hash=generate_password_hash(password, method='sha256')
+                password=generate_password_hash(password, method='sha256'),
             )
             db.session.add(new_user)
             db.session.commit()
