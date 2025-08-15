@@ -64,8 +64,8 @@ def calculate_tax_post():
         total = round(amount + tax, 2)
         return render_template('tax/tax_result.html', country=country.upper(), amount=amount, tax=tax, total=total)
 @app.route('/admin')
-    @login_required
-    @role_required('admin')
+@login_required
+@role_required('admin')
     def admin_dashboard():
         return render_template('admin_dashboard.html')
             @app.route('/export_compliance_csv')
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
