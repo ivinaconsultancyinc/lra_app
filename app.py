@@ -48,7 +48,7 @@ VAT_RATES = {
     'CA': 0.05
     }
         # Tax calculation function
-    def calculate_tax(country_code, amount):
+def calculate_tax(country_code, amount):
         rate = VAT_RATES.get(country_code.upper(), 0)
         return round(amount * rate, 2)
         # Route to display the tax form
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
