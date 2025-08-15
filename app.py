@@ -33,11 +33,11 @@ from auth.routes import auth as auth_blueprint
 from modules.tax_audit import tax_audit_bp
 from modules.transfer_pricing import tp_bp
 from modules.compliance import compliance_bp
-    app.register_blueprint(auth_blueprint, url_prefix='/auth')
-    app.register_blueprint(tax_audit_bp, url_prefix='/tax_audit')
-    app.register_blueprint(risk_bp, url_prefix='/risk')
-    app.register_blueprint(tp_bp, url_prefix='/transfer_pricing')
-    app.register_blueprint(compliance_bp, url_prefix='/compliance')
+app.register_blueprint(auth_blueprint, url_prefix='/auth')
+app.register_blueprint(tax_audit_bp, url_prefix='/tax_audit')
+app.register_blueprint(risk_bp, url_prefix='/risk')
+app.register_blueprint(tp_bp, url_prefix='/transfer_pricing')
+app.register_blueprint(compliance_bp, url_prefix='/compliance')
             # VAT rates by country
     VAT_RATES = {
         'US': 0.07,
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
