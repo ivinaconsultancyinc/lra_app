@@ -39,13 +39,13 @@ app.register_blueprint(risk_bp, url_prefix='/risk')
 app.register_blueprint(tp_bp, url_prefix='/transfer_pricing')
 app.register_blueprint(compliance_bp, url_prefix='/compliance')
             # VAT rates by country
-    VAT_RATES = {
-        'US': 0.07,
-        'UK': 0.20,
-        'DE': 0.19,
-        'FR': 0.20,
-        'IN': 0.18,
-        'CA': 0.05
+VAT_RATES = {
+    'US': 0.07,
+    'UK': 0.20,
+    'DE': 0.19,
+    'FR': 0.20,
+    'IN': 0.18,
+    'CA': 0.05
     }
         # Tax calculation function
     def calculate_tax(country_code, amount):
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
