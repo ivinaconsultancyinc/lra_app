@@ -52,11 +52,11 @@ def calculate_tax(country_code, amount):
         rate = VAT_RATES.get(country_code.upper(), 0)
         return round(amount * rate, 2)
         # Route to display the tax form
-    @app.route('/tax', methods=['GET'])
-    def tax_form():
+@app.route('/tax', methods=['GET'])
+def tax_form():
         return render_template('tax/tax_form.html')
         # Route to handle tax calculation and display result
-    @app.route('/calculate_tax', methods=['POST'])
+@app.route('/calculate_tax', methods=['POST'])
     def calculate_tax_post():
         country = request.form.get('country')
         amount = float(request.form.get('amount'))
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
