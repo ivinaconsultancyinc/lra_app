@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     # Role-based access control decorator
     # Setup logging
     if not os.path.exists('logs'):
-    os.mkdir('logs')
+        os.mkdir('logs')
     file_handler = RotatingFileHandler('logs/lra_app.log', maxBytes=10240, backupCount=10)
     file_handler.setFormatter(logging.Formatter(
     '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
@@ -188,4 +188,5 @@ def logout():
     if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
