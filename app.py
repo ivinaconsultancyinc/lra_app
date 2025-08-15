@@ -1,25 +1,3 @@
-from flask import Flask, render_template, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from functools import wraps
-import logging
-from logging.handlers import RotatingFileHandler
-import os
-# Initialize extensions
-db = SQLAlchemy()
-login_manager = LoginManager()
-def create_app():
-        app = Flask(__name__)
-                # Configuration
-        app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'supersecretkey')
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/lra_app.db'
-        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-            # Initialize extensions
-        db.init_app(app)
-        login_manager.init_app(app)
-        login_manager.login_view = 'auth.login'
-        # User model with role
-        # Compliance model
     class Compliance(db.Model):
         __tablename__ = 'compliance'
         id = db.Column(db.Integer, primary_key=True)
@@ -53,9 +31,9 @@ def create_app():
             # Register Blueprints
     from auth.routes import auth as auth_blueprint
     from modules.tax_audit import tax_audit_bp
-                from modules.transfer_pricing import tp_bp
+    from modules.transfer_pricing import tp_bp
     from modules.compliance import compliance_bp
-        app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
     app.register_blueprint(tax_audit_bp, url_prefix='/tax_audit')
     app.register_blueprint(risk_bp, url_prefix='/risk')
             app.register_blueprint(tp_bp, url_prefix='/transfer_pricing')
@@ -85,7 +63,7 @@ def create_app():
         tax = calculate_tax(country, amount)
         total = round(amount + tax, 2)
         return render_template('tax/tax_result.html', country=country.upper(), amount=amount, tax=tax, total=total)
-            @app.route('/admin')
+    @app.route('/admin')
     @login_required
     @role_required('admin')
     def admin_dashboard():
@@ -119,6 +97,29 @@ def create_app():
                 # Return the file as a download
             return send_file(filepath, as_attachment=True)
             return app
+
+from flask import Flask, render_template, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from functools import wraps
+import logging
+from logging.handlers import RotatingFileHandler
+import os
+# Initialize extensions
+db = SQLAlchemy()
+login_manager = LoginManager()
+def create_app():
+        app = Flask(__name__)
+                # Configuration
+        app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'supersecretkey')
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/lra_app.db'
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+            # Initialize extensions
+        db.init_app(app)
+        login_manager.init_app(app)
+        login_manager.login_view = 'auth.login'
+        # User model with role
+        # Compliance model
 # --- Begin Integrated Code from routes.py ---
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required
