@@ -8,7 +8,7 @@ class Compliance(db.Model):
         recommendations = db.Column(db.Text)
         checked_by = db.Column(db.String(100))
         next_review_date = db.Column(db.String(10))
-        class User(UserMixin, db.Model):
+class User(UserMixin, db.Model):
         id = db.Column(db.Integer, primary_key=True)
         email = db.Column(db.String(150), unique=True, nullable=False)
         password = db.Column(db.String(150), nullable=False)
@@ -188,4 +188,5 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
