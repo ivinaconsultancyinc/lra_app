@@ -57,7 +57,7 @@ def tax_form():
         return render_template('tax/tax_form.html')
         # Route to handle tax calculation and display result
 @app.route('/calculate_tax', methods=['POST'])
-    def calculate_tax_post():
+def calculate_tax_post():
         country = request.form.get('country')
         amount = float(request.form.get('amount'))
         tax = calculate_tax(country, amount)
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
