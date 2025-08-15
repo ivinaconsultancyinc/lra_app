@@ -1,4 +1,4 @@
-        class Compliance(db.Model):
+    class Compliance(db.Model):
         __tablename__ = 'compliance'
         id = db.Column(db.Integer, primary_key=True)
         company = db.Column(db.String(100), nullable=False)
@@ -9,12 +9,12 @@
         checked_by = db.Column(db.String(100))
         next_review_date = db.Column(db.String(10))
         class User(UserMixin, db.Model):
-        id = db.Column(db.Integer, primary_key=True)
+            id = db.Column(db.Integer, primary_key=True)
         email = db.Column(db.String(150), unique=True, nullable=False)
         password = db.Column(db.String(150), nullable=False)
         role = db.Column(db.String(20), nullable=False, default='user')
         @login_manager.user_loader
-        def load_user(user_id):
+    def load_user(user_id):
         return User.query.get(int(user_id))
         # Role-based access control decorator
         # Setup logging
@@ -188,7 +188,3 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
-
-
-
-
