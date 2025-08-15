@@ -1,4 +1,4 @@
-    class Compliance(db.Model):
+class Compliance(db.Model):
         __tablename__ = 'compliance'
         id = db.Column(db.Integer, primary_key=True)
         company = db.Column(db.String(100), nullable=False)
@@ -188,3 +188,4 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
