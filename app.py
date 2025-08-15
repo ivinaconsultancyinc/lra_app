@@ -66,12 +66,12 @@ def calculate_tax_post():
 @app.route('/admin')
 @login_required
 @role_required('admin')
-    def admin_dashboard():
+def admin_dashboard():
         return render_template('admin_dashboard.html')
-            @app.route('/export_compliance_csv')
-        @login_required
-        @role_required('admin')
-        def export_compliance_csv():
+@app.route('/export_compliance_csv')
+@login_required
+@role_required('admin')
+def export_compliance_csv():
             # Ensure the exports directory exists
             export_dir = os.path.join(os.getcwd(), 'exports')
             os.makedirs(export_dir, exist_ok=True)
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
