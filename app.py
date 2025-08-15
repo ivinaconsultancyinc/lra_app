@@ -106,7 +106,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
         # Initialize extensions
-        db = SQLAlchemy()
+db = SQLAlchemy()
         login_manager = LoginManager()
 def create_app():
         app = Flask(__name__)
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
