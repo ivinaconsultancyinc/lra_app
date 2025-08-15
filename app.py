@@ -104,7 +104,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from functools import wraps
 import logging
 from logging.handlers import RotatingFileHandler
-        import os
+import os
         # Initialize extensions
         db = SQLAlchemy()
         login_manager = LoginManager()
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
