@@ -98,12 +98,12 @@ def export_compliance_csv():
             return send_file(filepath, as_attachment=True)
             return app
 
-        from flask import Flask, render_template, request, jsonify
-        from flask_sqlalchemy import SQLAlchemy
-        from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-        from functools import wraps
+from flask import Flask, render_template, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from functools import wraps
         import logging
-        from logging.handlers import RotatingFileHandler
+from logging.handlers import RotatingFileHandler
         import os
         # Initialize extensions
         db = SQLAlchemy()
@@ -188,6 +188,7 @@ def logout():
 if __name__ == '__main__':
     app = create_app()
     app.run(debug=True)
+
 
 
 
