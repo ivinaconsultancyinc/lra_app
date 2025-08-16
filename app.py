@@ -137,8 +137,8 @@ def create_app():
     os.makedirs('instance', exist_ok=True)
     os.makedirs('exports', exist_ok=True)
 
-    # Use absolute path for the SQLite database
-    db_path = os.path.join(os.getcwd(), 'instance', 'lra_app.db')
+    # Use Render-compatible writable path
+    db_path = os.environ.get('DATABASE_PATH', '/data/lra_app.db')
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -335,5 +335,6 @@ app = create_app()
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
