@@ -1,0 +1,58 @@
+# Create a basic index.html file with welcome message and navigation links
+html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LRA Natural Resources Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        a {
+            display: block;
+            margin: 10px 0;
+            color: #2980b9;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the LRA Natural Resources Management System</h1>
+    <p>Select a module to proceed:</p>
+    <nav>
+        <a href="/gst">GST Module</a>
+        <a href="/tax">Tax Module</a>
+        <a href="/compliance">Compliance Module</a>
+        <a href="/risk">Risk Management Module</a>
+    </nav>
+</body>
+</html>
+"""
+
+# Save the HTML content to index.html in the templates directory
+import os
+
+# Ensure templates directory exists
+os.makedirs("templates", exist_ok=True)
+
+# Write the HTML content to index.html
+with open("templates/index.html", "w") as file:
+    file.write(html_content)
+
+print("Sample index.html file has been created in the templates directory.")
+
+
+
