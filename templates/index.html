@@ -1,57 +1,429 @@
-html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LRA Natural Resources Tax Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRA Natural Resources Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #059669;
+            --accent-color: #dc2626;
+            --light-bg: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        h1 {
-            color: #2c3e50;
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
         }
-        nav {
-            margin-top: 20px;
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        a {
+
+        .hero-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--secondary-color), #10b981);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-color), #1e40af);
+            border: none;
+            padding: 0.7rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: linear-gradient(135deg, #1e40af, var(--primary-color));
+            transform: translateY(-2px);
+        }
+
+        .btn-success-custom {
+            background: linear-gradient(135deg, var(--secondary-color), #10b981);
+            border: none;
+            color: white;
+            padding: 0.7rem 2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success-custom:hover {
+            background: linear-gradient(135deg, #10b981, var(--secondary-color));
+            transform: translateY(-2px);
+        }
+
+        .stats-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quick-actions {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin-top: 2rem;
+        }
+
+        .action-btn {
             display: block;
-            margin: 10px 0;
-            color: #2980b9;
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            color: #374151;
             text-decoration: none;
-            font-size: 18px;
+            transition: all 0.3s ease;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .action-btn:hover {
+            background: #f8fafc;
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .action-btn i {
+            margin-right: 0.8rem;
+            width: 20px;
+        }
+
+        .footer-section {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .liberia-flag {
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+            background: linear-gradient(to bottom, #bf0a30 0%, #bf0a30 50%, white 50%, white 100%);
+            border: 1px solid #ccc;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-card {
+                margin-bottom: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the LRA Natural Resources Management System</h1>
-    <p>Select a module to proceed:</p>
-    <nav>
-        <a href="/gst">GST Module</a>
-        <a href="/tax">Tax Module</a>
-        <a href="/compliance">Compliance Module</a>
-        <a href="/risk">Risk Management Module</a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--primary-color);">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <span class="liberia-flag"></span>
+                <strong>LRA Natural Resources</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gst">GST Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tax">Tax Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/compliance">Compliance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1><i class="fas fa-leaf me-3"></i>LRA Natural Resources Management</h1>
+            <p class="lead">Comprehensive tax compliance and management system for Liberia's natural resources sector</p>
+            <div class="mt-4">
+                <a href="/gst" class="btn btn-light btn-lg me-3">
+                    <i class="fas fa-calculator me-2"></i>Calculate GST
+                </a>
+                <a href="/auth/login" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Features Section -->
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h4>GST Calculations</h4>
+                    <p>Calculate Goods & Services Tax for natural resources transactions with Liberia's current 15% GST rate. Supports mining, forestry, petroleum, and other resource sectors.</p>
+                    <a href="/gst" class="btn btn-primary-custom">Calculate GST</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Compliance Management</h4>
+                    <p>Track regulatory compliance across mining, forestry, and petroleum operations. Monitor findings, recommendations, and review schedules.</p>
+                    <a href="/compliance" class="btn btn-primary-custom">Manage Compliance</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h4>Tax Auditing</h4>
+                    <p>Comprehensive tax audit tools for natural resources companies. Streamline audit processes and ensure regulatory compliance.</p>
+                    <a href="/tax_audit" class="btn btn-primary-custom">Start Audit</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="row">
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">15%</div>
+                    <div class="stat-label">Current GST Rate</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Resource Categories</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Compliance Focus</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">System Availability</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resource Types -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="quick-actions">
+                    <h3 class="mb-4"><i class="fas fa-industry me-2"></i>Supported Natural Resources</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/gst?resource=mining" class="action-btn">
+                                <i class="fas fa-gem text-primary"></i>Mining Operations
+                            </a>
+                            <a href="/gst?resource=forestry" class="action-btn">
+                                <i class="fas fa-tree text-success"></i>Forestry Operations
+                            </a>
+                            <a href="/gst?resource=petroleum" class="action-btn">
+                                <i class="fas fa-oil-can text-dark"></i>Petroleum Operations
+                            </a>
+                            <a href="/gst?resource=gold" class="action-btn">
+                                <i class="fas fa-coins text-warning"></i>Gold Mining
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/gst?resource=iron_ore" class="action-btn">
+                                <i class="fas fa-mountain text-secondary"></i>Iron Ore Mining
+                            </a>
+                            <a href="/gst?resource=rubber" class="action-btn">
+                                <i class="fas fa-circle text-info"></i>Rubber Plantations
+                            </a>
+                            <a href="/gst?resource=palm_oil" class="action-btn">
+                                <i class="fas fa-seedling text-success"></i>Palm Oil Operations
+                            </a>
+                            <a href="/api/gst_rates" class="action-btn">
+                                <i class="fas fa-list text-primary"></i>View All GST Rates
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="quick-actions">
+                    <h4 class="mb-4"><i class="fas fa-bolt me-2"></i>Quick Actions</h4>
+                    <a href="/bulk_gst_calculate" class="action-btn">
+                        <i class="fas fa-calculator"></i>Bulk GST Calculator
+                    </a>
+                    <a href="/gst_history" class="action-btn">
+                        <i class="fas fa-history"></i>GST History
+                    </a>
+                    <a href="/export_gst_calculations_csv" class="action-btn">
+                        <i class="fas fa-download"></i>Export GST Data
+                    </a>
+                    <a href="/transfer_pricing" class="action-btn">
+                        <i class="fas fa-exchange-alt"></i>Transfer Pricing
+                    </a>
+                    <a href="/risk" class="action-btn">
+                        <i class="fas fa-exclamation-triangle"></i>Risk Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <h4><i class="fas fa-info-circle me-2"></i>GST Information</h4>
+                    <p><strong>Standard Rate:</strong> 15% for most natural resource operations</p>
+                    <p><strong>Exempt Items:</strong> Raw minerals for export, unprocessed timber for export, basic food items</p>
+                    <p><strong>Zero-Rated:</strong> Exports outside Liberia, international transport, diplomatic purchases</p>
+                    <a href="/gst" class="btn btn-success-custom mt-2">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <h4><i class="fas fa-chart-line me-2"></i>System Features</h4>
+                    <ul class="list-unstyled text-start">
+                        <li><i class="fas fa-check text-success me-2"></i>Real-time GST calculations</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Compliance tracking</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Audit trail maintenance</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Export functionality</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Multi-user support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><span class="liberia-flag"></span>Liberia Revenue Authority</h5>
+                    <p>Natural Resources Management System for tax compliance and GST calculations in Liberia's natural resources sector.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2024 LRA Natural Resources Management System</p>
+                    <p>Designed for Liberia's natural resources taxation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Add smooth scrolling and interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate stat numbers
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                if (text.includes('%') || text.includes('+')) {
+                    stat.style.color = '#059669';
+                }
+            });
+
+            // Add hover effects to feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderColor = '#059669';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderColor = '#e2e8f0';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-"""
-
-# Save the HTML content to index.html in the templates directory
-import os
-
-# Ensure templates directory exists
-os.makedirs("templates", exist_ok=True)
-
-# Write the HTML content to index.html
-with open("templates/index.html", "w") as file:
-    file.write(html_content)
-
-print("Sample index.html file has been created in the templates directory.")
-
-
-
