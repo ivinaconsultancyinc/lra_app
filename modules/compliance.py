@@ -1,26 +1,55 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
-from flask_login import login_required
-from modules.models import Compliance, db
-from modules.forms import ComplianceForm
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compliance Management Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        header { margin-bottom: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: #007BFF; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .no-entries { text-align: center; font-style: italic; color: #888; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Compliance Management Dashboard</h1>
+        <nav>
+            <a href="{{ url_for('gst_bp.gst_form') }}">GST Calculator</a>
+            <a href="{{ url_for('tax_bp.tax_form') }}">Tax Calculator</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        </nav>
+    </header>
 
-compliance_bp = Blueprint('compliance', __name__, template_folder='templates')
-
-@compliance_bp.route('/submit', methods=['GET', 'POST'])
-@login_required
-def submit_compliance():
-    form = ComplianceForm()
-    if form.validate_on_submit():
-        new_entry = Compliance(
-            company=form.company.data,
-            regulation=form.regulation.data,
-            status=form.status.data,
-            findings=form.findings.data,
-            recommendations=form.recommendations.data,
-            checked_by=form.checked_by.data,
-            next_review_date=form.next_review_date.data
-        )
-        db.session.add(new_entry)
-        db.session.commit()
-        flash('Compliance check submitted successfully!', 'success')
-        return redirect(url_for('compliance.submit_compliance'))
-    return render_template('compliance_submit.html', form=form)
+    <section>
+        <h2>Compliance Entries</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Regulation</th>
+                    <th>Status</th>
+                    <th>Next Review Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.company }}</td>
+                    <td>{{ entry.regulation }}</td>
+                    <td>{{ entry.status }}</td>
+                    <td>{{ entry.next_review_date }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="no-entries">No compliance entries found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
