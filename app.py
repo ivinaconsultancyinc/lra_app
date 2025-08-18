@@ -176,6 +176,11 @@ def create_app():
     app.register_blueprint(compliance_bp, url_prefix='/compliance')
     app.register_blueprint(risk_bp, url_prefix='/risk')
 
+    @app.route('/admin_dashboard')
+    @login_required
+    def admin_dashboard():
+        return render_template('admin_dashboard.html')
+
     # Main dashboard
     @app.route('/')
     def index():
@@ -337,6 +342,7 @@ app = create_app()
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 
